@@ -22,8 +22,9 @@ public class HomePage extends BasePage
         return driver.findElement(btnPIM);
     }
     public void getPIM() throws InterruptedException {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         pimBtn().click();
+        Thread.sleep(2000);
     }
 
     //lista de usuario donde muestra opciones (aqui se encuentra el logout)
@@ -42,7 +43,7 @@ public class HomePage extends BasePage
         Thread.sleep(2000);
         userDropdown().click();
         btnLogout().click();
-
+        Thread.sleep(2000);
     }
 
 }

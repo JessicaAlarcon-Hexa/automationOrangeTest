@@ -1,5 +1,6 @@
 package org.example.Paginas;
 
+import org.example.Reports.ScreenshotsClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -55,7 +56,7 @@ public class PIMPage extends BasePage
     private String firstNameValue;
     public void fillFormEmployee(String firstName, String middleName, String lastName, String username, String password, String pass2) throws InterruptedException
     {
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         getAddBtn().click();
         //wait explicito
         WebDriverWait waitForPage= new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -74,13 +75,10 @@ public class PIMPage extends BasePage
         getPimUsernameBox().sendKeys(username);
         getPimPasswordBox().sendKeys(password);
         getPimConfirmPasswordBox().sendKeys(pass2);
-
-       // waitForPage.until(ExpectedConditions.presenceOfElementLocated(boxEmployeeFirstName));
         Thread.sleep(1000);
-       // getBtnSaveNewEmployee().click();
         jsExecutor.executeScript("arguments[0].click();", getBtnSaveNewEmployee());
 
-        Thread.sleep(5000);
+        Thread.sleep(4000);
       //  waitForPage.until(ExpectedConditions.attributeContains(boxEmployeeId, "value", idValue));
      /*
         Así se crea un ExpectedCondition con condiciones que nosotros necesitemos
@@ -110,7 +108,9 @@ public class PIMPage extends BasePage
         Thread.sleep(3000);
         getEmployeeIdBox().sendKeys(idValue);
         getBtnSearchId().click();
-
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,350)");
+        Thread.sleep(2000);
     }
 
     public WebElement validateIdSearch()
@@ -125,8 +125,5 @@ public class PIMPage extends BasePage
        String xpathUserValue="//p[@class='oxd-userdropdown-name' and contains(text(), '"+firstNameValue+"')]";
         WebElement getTxtUserValue= driver.findElement(By.xpath(xpathUserValue));
         return getTxtUserValue;
-
     }
-
-
 }

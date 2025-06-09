@@ -40,12 +40,13 @@ public class BasePage
         /* WebDriverWait waitForPage= new WebDriverWait(driver, Duration.ofSeconds(10));
          waitForPage.until(ExpectedConditions.visibilityOfElementLocated(btnLogIn));
          */
-         Thread.sleep(3000);
+         Thread.sleep(1000);
          getUsernameBox().sendKeys(user);
          getPasswordBox().sendKeys(pass);
-
+         Thread.sleep(3000);
 
          getBtnLogin().click();
+         Thread.sleep(3000);
      }
 
 
