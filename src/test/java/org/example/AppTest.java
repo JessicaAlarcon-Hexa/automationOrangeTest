@@ -18,6 +18,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Random;
 
 public class AppTest
 {
@@ -57,17 +58,20 @@ public class AppTest
         HomePage homePage=new HomePage(driver);
         homePage.getPIM();
         ssPath= ScreenshotsClass.takeSS(driver, "PIMPage");
+
         //Report ingreso a PIM
         test1.pass("Ingreso a pantalla PIM",MediaEntityBuilder.createScreenCaptureFromPath(ssPath).build()).addScreenCaptureFromPath(ssPath);
         Thread.sleep(2000);
+
         //Crear nuevo usuario con opciones de Login
         PIMPage pimPage= new PIMPage(driver);
-        String firstName="Talya";
-        String middleName= "";
-        String lastName="Rivera";
-        Double numAl= Math.random();
-        String newUsername="TalyaR"+numAl;
-        String newPassword="talya123";
+        String firstName="Jessica";
+        String middleName= "Gabriela";
+        String lastName="Alarcón";
+        Random random= new Random();
+        int num= random.nextInt(100)+1;
+        String newUsername="jess_"+num;
+        String newPassword="jessica0";
         pimPage.fillFormEmployee(firstName,middleName,lastName,newUsername,newPassword, newPassword);
         Thread.sleep(2000);
         ssPath= ScreenshotsClass.takeSS(driver, "newUser");
@@ -100,10 +104,11 @@ public class AppTest
         System.out.println("Bienvenido(a): "+userAssert.getText());
         test1.pass("El usuario "+newUsername+" ingresó correctamente",MediaEntityBuilder.createScreenCaptureFromPath(ssPath).build()).addScreenCaptureFromPath(ssPath);
 
-        driverHandler.quit();
+       // driverHandler.quit();
 
         test1.info("Finalizó la prueba de manera exitosa");
     }
+
     @AfterTest
     public void afterTest() throws IOException {
         extentReport.flush();
